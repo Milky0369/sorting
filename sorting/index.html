@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Sorter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        textarea { width: 80%; height: 100px; }
+        button { margin: 10px; padding: 10px; }
+        #outputText { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Sort Words Alphabetically</h2>
+    <textarea id="inputText" placeholder="Enter words here..."></textarea>
+    <br>
+    <button id="sortButton">Sort Words</button>
+    <p id="outputText"></p>
+
+    <script>
+        function sortWords(input) {
+            let words = input.replace(/,/g, '').split(/\s+/);
+            words = words.map(word => word.toUpperCase());
+            words.sort((a, b) => a.localeCompare(b));
+            return words.join(' ');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('sortButton').addEventListener('click', function () {
+                let inputText = document.getElementById('inputText').value;
+                let sortedText = sortWords(inputText);
+                document.getElementById('outputText').innerText = sortedText;
+            });
+        });
+    </script>
+
+</body>
+</html>
